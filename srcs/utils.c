@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/14 16:40:14 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/14 16:40:35 by hexa             ###   ########.fr       */
+/*   Created: 2020/09/14 15:07:32 by hexa              #+#    #+#             */
+/*   Updated: 2020/09/14 17:28:15 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_ssl.h"
 
-void    *ft_memmove(void *dst, const void *src, size_t len)
+uint32_t	ft_left_rotate(uint32_t x, uint32_t n)
 {
-	unsigned char   *dst2;
-	unsigned char   *src2;
+	return ((x << n) | (x >> (32 - n)));
+}
 
-	dst2 = (unsigned char *)dst;
-	src2 = (unsigned char *)src;
-	if (src < dst)
-	{
-		src2 = src2 + len - 1;
-		dst2 = dst2 + len - 1;
-		while (len--)
-			*dst2-- = *src2--;
-	}
-	else if (src >= dst)
-	{
-		while (len--)
-			*dst2++ = *src2++;
-	}
+uint32_t	to_uint32(void *str)
+{
+	uint32_t	dst;
+
+	dst = 0;
+	dst = (dst | ((char*)str)[3]) << 8;
+	dst = (dst | ((char*)str)[2]) << 8;
+	dst = (dst | ((char*)str)[1]) << 8;
+	dst |= ((char*)str)[0];
 	return (dst);
 }

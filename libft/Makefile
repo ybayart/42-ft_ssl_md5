@@ -6,7 +6,7 @@
 #    By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 07:37:47 by hexa              #+#    #+#              #
-#    Updated: 2020/09/14 08:03:02 by hexa             ###   ########.fr        #
+#    Updated: 2020/09/14 16:09:51 by hexa             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS = ft_memset.c\
 	   ft_isstrint.c\
 	   ft_toupper.c\
 	   ft_tolower.c\
+	   ft_abs.c\
 	   ft_strchr.c\
 	   ft_strrchr.c\
 	   ft_strncmp.c\
@@ -57,10 +58,12 @@ SRCS = ft_memset.c\
 	   ft_putchar.c\
 	   ft_putchar_fd.c\
 	   ft_putstr.c\
+	   ft_putnstr.c\
 	   ft_putstr_fd.c\
 	   ft_putendl.c\
 	   ft_putendl_fd.c\
 	   ft_putnbr.c\
+	   ft_putnbr_base.c\
 	   ft_putnbr_fd.c\
 	   ft_sort_string_tab.c\
 	   ft_strinsert.c\
@@ -121,7 +124,9 @@ SRCS = ft_memset.c\
 		ft_strnew.c\
        	ft_strsplit.c\
 		ft_strstr.c\
-		ft_strreplace.c
+		ft_strreplace.c\
+		ft_print_memory.c\
+		ft_print_binary.c\
 
 OBJECT = $(SRCS:.c=.o)
 

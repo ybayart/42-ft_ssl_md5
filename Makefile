@@ -1,6 +1,7 @@
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -lm
+#FLAGS = -Wall
 
 SAN = -fsanitize=leak
 
@@ -18,6 +19,8 @@ INCS_DIR = includes/
 
 SRCS_LIST = main \
 			md5 \
+			md5_fct \
+			utils \
 
 INCS =	ft_ssl \
 		proto \

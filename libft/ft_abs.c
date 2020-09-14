@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ssl.h                                           :+:      :+:    :+:   */
+/*   ft_asb.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
+/*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/14 07:32:47 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/14 12:21:38 by hexa             ###   ########.fr       */
+/*   Created: 2020/09/14 13:09:31 by hexa              #+#    #+#             */
+/*   Updated: 2020/09/14 13:10:01 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SSL_H
-# define FT_SSL_H
-
-# include "libinc.h"
-# include "typedef.h"
-# include "proto.h"
-# include "libft.h"
-
-#endif
+int		ft_abs(int n)
+{
+	return (n < 0 ? -n : n);
+}

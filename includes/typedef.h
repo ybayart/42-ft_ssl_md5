@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/14 16:40:14 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/14 16:40:35 by hexa             ###   ########.fr       */
+/*   Created: 2020/09/14 10:35:58 by hexa              #+#    #+#             */
+/*   Updated: 2020/09/14 17:48:13 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef TYPEDEF_H
+# define TYPEDEF_H
 
-void    *ft_memmove(void *dst, const void *src, size_t len)
+typedef struct		s_md5
 {
-	unsigned char   *dst2;
-	unsigned char   *src2;
+	size_t			srclen;
+	size_t			dstlen;
+	char			*src;
+	unsigned char	*dst;
+	uint32_t		h[4];
+	uint32_t		m[4];
+	size_t			blocks;
+	uint32_t		w[16];
+	size_t			i;
+	uint32_t		f;
+	uint32_t		g;
+}					t_md5;
 
-	dst2 = (unsigned char *)dst;
-	src2 = (unsigned char *)src;
-	if (src < dst)
-	{
-		src2 = src2 + len - 1;
-		dst2 = dst2 + len - 1;
-		while (len--)
-			*dst2-- = *src2--;
-	}
-	else if (src >= dst)
-	{
-		while (len--)
-			*dst2++ = *src2++;
-	}
-	return (dst);
-}
+#endif

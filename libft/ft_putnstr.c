@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ssl.h                                           :+:      :+:    :+:   */
+/*   ft_putnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
+/*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/14 07:32:47 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/14 12:21:38 by hexa             ###   ########.fr       */
+/*   Created: 2020/09/14 08:25:11 by hexa              #+#    #+#             */
+/*   Updated: 2020/09/14 08:25:42 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SSL_H
-# define FT_SSL_H
+#include "libft.h"
 
-# include "libinc.h"
-# include "typedef.h"
-# include "proto.h"
-# include "libft.h"
-
-#endif
+void	ft_putnstr(char *str, size_t n)
+{
+	write(1, str, n);
+}

@@ -6,7 +6,7 @@
 /*   By: racohen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 22:11:29 by racohen           #+#    #+#             */
-/*   Updated: 2020/09/14 07:58:19 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/14 16:09:33 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int					ft_toupper(int c);
 int					ft_isspace(int c);
 int					ft_isstrint(char *str);
 char				*ft_itoa(int n);
+int					ft_abs(int n);
 void				*ft_memalloc(size_t size);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strncpy(char *dst, char const *src, size_t n);
@@ -62,8 +63,10 @@ void				ft_putendl(char *s);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr(int n);
 void				ft_putnbr_sizet(size_t n);
+void				ft_putnbr_base(int nbr, char *base);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr(char *s);
+void				ft_putnstr(char *s, size_t n);
 void				ft_putstr_fd(char *s, int fd);
 char				**ft_split(const char *str, char c);
 char				**ft_strsplit(char const *s, char c);
@@ -116,5 +119,7 @@ void				ft_lst_print(t_list *lst);
 char				*ft_strreplace(char **str, char *search, char *replace);
 void				ft_sort_string_tab(char **ft_tab);
 char				**ft_strinsert(char **list, char *str, size_t pos);
+void				*ft_print_memory(void *addr, unsigned int size);
+void				*ft_print_binary(void *addr, unsigned int size);
 
 #endif
