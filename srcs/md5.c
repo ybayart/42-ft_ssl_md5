@@ -6,7 +6,7 @@
 /*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 07:40:50 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/14 17:56:52 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/14 18:24:31 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void		work(t_md5 *data)
 	{
 		j = -1;
 		while (++j < 16)
-			ft_memcpy((*data).w + j, (*data).dst + (j * 4), 4);
+			ft_memcpy((*data).w + j, (*data).dst + (i * 64) + (j * 4), 4);
 		j = -1;
 		while (++j < 4)
 			(*data).m[j] = (*data).h[j];
