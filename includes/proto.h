@@ -6,7 +6,7 @@
 /*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 07:33:00 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/15 18:43:03 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/15 20:14:46 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,11 @@ uint32_t		ft_right_rotate(uint32_t x, uint32_t n);
 uint32_t		ft_right_shift(uint32_t x, uint32_t n);
 uint64_t		ft_right_rotate_64(uint64_t x, uint64_t n);
 uint64_t		ft_right_shift_64(uint64_t x, uint64_t n);
+
+char			run_interactive(char *exec);
+void			display_help(void);
+char			parse_line(char **args, size_t start);
+void			print_digest(t_digest digest);
+
 
 #endif

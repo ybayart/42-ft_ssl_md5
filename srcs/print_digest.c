@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libinc.h                                           :+:      :+:    :+:   */
+/*   print_digest.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
+/*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/14 07:32:54 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/15 19:13:54 by hexa             ###   ########.fr       */
+/*   Created: 2020/09/15 19:24:47 by hexa              #+#    #+#             */
+/*   Updated: 2020/09/15 19:26:38 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBINC_H
-# define LIBINC_H
+#include "ft_ssl.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <math.h>
-# include <stdint.h>
+void	print_digest(t_digest digest)
+{
+	size_t			i;
+	unsigned char	n;
 
-#endif
+	i = 0;
+	while (i < (digest.size / 2))
+	{
+		n = digest.ptr[i];
+		if (n < 16)
+			write(1, "0", 1);
+		ft_putnbr_base(n, "0123456789abcdef");
+		i++;
+	}
+}

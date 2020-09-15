@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
+/*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/14 07:40:13 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/15 20:15:31 by hexa             ###   ########.fr       */
+/*   Created: 2020/09/15 20:12:53 by hexa              #+#    #+#             */
+/*   Updated: 2020/09/15 20:23:50 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-int		main(int argc, char **argv)
+char		parse_line(char **args, size_t i)
 {
-	char			ret;
+	t_digest	digest;
 
-	ret = EXIT_SUCCESS;
-	if (argc == 1)
+	while (args[i] != NULL)
 	{
-		ret = run_interactive(argv[0]);
+		if (ft_sha512(args[i], ft_strlen(args[i]), &digest) != 0)
+		{
+			print_digest(digest);
+			write(1, "\n", 1);
+			free(digest.ptr);
+		}
+		i++;
 	}
-	else if (ft_strcmp(argv[1], "help") == 0)
-	{
-		display_help();
-	}
-	else
-	{
-		ret = parse_line(argv, 1);
-	}
-	return (ret);
+	return (EXIT_SUCCESS);
 }

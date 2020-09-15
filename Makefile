@@ -28,6 +28,10 @@ SRCS_LIST = main \
 			prepare \
 			utils \
 			sha_makeword \
+			interactive \
+			display_help \
+			parse \
+			print_digest \
 
 INCS =	ft_ssl \
 		proto \

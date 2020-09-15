@@ -6,7 +6,7 @@
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 10:53:21 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/15 18:39:27 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/15 19:23:31 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char		padding_simple(t_hash *data, size_t size, void *(*fct)(void *,
 	*(char*)((*data).dst + (*data).srclen) = (1 << 7);
 	ft_memcpy((*data).dst, (*data).src, (*data).srclen);
 	(*data).srclen *= 8;
-	fct((*data).dst + ((*data).dstlen - (size / 8)), &((*data).srclen), (size / 8));
+	fct((*data).dst + ((*data).dstlen - (size / 8)), &((*data).srclen),
+																(size / 8));
 	return (1);
 }
