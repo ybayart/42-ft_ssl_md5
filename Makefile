@@ -21,9 +21,13 @@ SRCS_LIST = main \
 			md5 \
 			md5_fct \
 			sha256 \
+			sha256_224 \
+			sha512 \
+			sha512_384 \
 			padding \
 			prepare \
 			utils \
+			sha_makeword \
 
 INCS =	ft_ssl \
 		proto \

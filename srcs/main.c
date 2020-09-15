@@ -6,7 +6,7 @@
 /*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 07:40:13 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/15 12:28:06 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/15 18:43:11 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 int		main(int argc, char **argv)
 {
 	int				i;
-	int				j;
-	unsigned char	*digest;
+	size_t			j;
+	t_digest		digest;
 
 	i = 0;
 	while (++i < argc)
 	{
-		if ((digest = ft_sha256(argv[i], ft_strlen(argv[i]))) != NULL)
+		if (ft_sha512_384(argv[i], ft_strlen(argv[i]), &digest) != 0)
 		{
 			j = 0;
-			while (j < 32)
-				printf("%02x", (unsigned char)digest[j++]);
+			while (j < (digest.size / 2))
+				printf("%02x", (unsigned char)digest.ptr[j++]);
 			printf("\n");
-			free(digest);
+			free(digest.ptr);
 		}
 		i++;
 	}

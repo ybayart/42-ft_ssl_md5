@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sha256.c                                           :+:      :+:    :+:   */
+/*   sha256_224.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 07:40:50 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/15 17:26:48 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/15 17:38:16 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ static uint32_t g_k[64] = {
 static void		prepare(char *str, size_t len, t_sha256 *data)
 {
 	prepare_hash(str, len, &((*data).hash));
-	(*data).h[0] = 0x6a09e667;
-	(*data).h[1] = 0xbb67ae85;
-	(*data).h[2] = 0x3c6ef372;
-	(*data).h[3] = 0xa54ff53a;
-	(*data).h[4] = 0x510e527f;
-	(*data).h[5] = 0x9b05688c;
-	(*data).h[6] = 0x1f83d9ab;
-	(*data).h[7] = 0x5be0cd19;
+	(*data).h[0] = 0xc1059ed8;
+	(*data).h[1] = 0x367cd507;
+	(*data).h[2] = 0x3070dd17;
+	(*data).h[3] = 0xf70e5939;
+	(*data).h[4] = 0xffc00b31;
+	(*data).h[5] = 0x68581511;
+	(*data).h[6] = 0x64f98fa7;
+	(*data).h[7] = 0xbefa4fa4;
 }
 
 /*
@@ -128,26 +128,27 @@ static void		work(t_sha256 *data)
 	}
 }
 
-char			ft_sha256(char *str, size_t len, t_digest *digest)
+char			ft_sha256_224(char *str, size_t len, t_digest *digest)
 {
 	t_sha256		data;
 
+	(void)g_k;
 	prepare(str, len, &data);
 	if (padding_simple(&(data.hash), (512 / 8), ft_memrcpy) == 0)
 		return (0);
 	work(&data);
-	if (!((*digest).ptr = ft_memalloc(64)))
+	if (!((*digest).ptr = ft_memalloc(56)))
 	{
 		free(data.hash.dst);
 		return (0);
 	}
 	data.i = 0;
-	while (data.i < 8)
+	while (data.i < 7)
 	{
 		ft_memrcpy((*digest).ptr + (data.i * 4), &(data.h[data.i]), 4);
 		data.i++;
 	}
-	(*digest).size = 64;
+	(*digest).size = 56;
 	free(data.hash.dst);
 	return (1);
 }

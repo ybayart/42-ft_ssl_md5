@@ -6,7 +6,7 @@
 /*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 07:40:50 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/15 11:17:54 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/15 17:30:18 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,24 +83,26 @@ static void		work(t_md5 *data)
 	}
 }
 
-unsigned char	*ft_md5(char *str, size_t len)
+char			ft_md5(char *str, size_t len, t_digest *digest)
 {
 	t_md5			data;
-	unsigned char	*digest;
 
 	prepare(str, len, &data);
 	if (padding_simple(&(data.hash), (512 / 8), ft_memcpy) == 0)
-		return (NULL);
+		return (0);
 	work(&data);
-	if (!(digest = ft_memalloc(32)))
+	if (!((*digest).ptr = ft_memalloc(32)))
 	{
 		free(data.hash.dst);
-		return (NULL);
+		return (0);
 	}
-	ft_memmove(digest, &(data.h[0]), 4);
-	ft_memmove(digest + 4, &(data.h[1]), 4);
-	ft_memmove(digest + 8, &(data.h[2]), 4);
-	ft_memmove(digest + 12, &(data.h[3]), 4);
+	data.i = 0;
+	while (data.i < 4)
+	{
+		ft_memmove((*digest).ptr + (data.i * 4), &(data.h[data.i]), 4);
+		data.i++;
+	}
+	(*digest).size = 32;
 	free(data.hash.dst);
-	return (digest);
+	return (1);
 }
