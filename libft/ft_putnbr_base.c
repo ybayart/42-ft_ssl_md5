@@ -6,7 +6,7 @@
 /*   By: ybayart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 10:49:14 by ybayart           #+#    #+#             */
-/*   Updated: 2020/09/14 16:09:15 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/15 09:56:26 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	ft_error(char *base, int *error)
 	}
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+void		ft_putnbr_base(int nbr, char *base)
 {
 	int		lbase;
 	int		error;

@@ -20,6 +20,9 @@ INCS_DIR = includes/
 SRCS_LIST = main \
 			md5 \
 			md5_fct \
+			sha256 \
+			padding \
+			prepare \
 			utils \
 
 INCS =	ft_ssl \

@@ -6,7 +6,7 @@
 #    By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 07:37:47 by hexa              #+#    #+#              #
-#    Updated: 2020/09/14 16:09:51 by hexa             ###   ########.fr        #
+#    Updated: 2020/09/15 10:24:20 by hexa             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ NAME = libft.a
 SRCS = ft_memset.c\
 	   ft_bzero.c\
 	   ft_memcpy.c\
+	   ft_memrcpy.c\
 	   ft_memccpy.c\
 	   ft_memmove.c\
 	   ft_memalloc.c\

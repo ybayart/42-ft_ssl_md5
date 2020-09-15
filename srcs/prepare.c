@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   prepare.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/14 16:40:14 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/15 09:57:00 by hexa             ###   ########.fr       */
+/*   Created: 2020/09/15 11:14:48 by hexa              #+#    #+#             */
+/*   Updated: 2020/09/15 11:16:20 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_ssl.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void		prepare_hash(char *str, size_t len, t_hash *hash)
 {
-	unsigned char	*dst2;
-	unsigned char	*src2;
-
-	dst2 = (unsigned char *)dst;
-	src2 = (unsigned char *)src;
-	if (src < dst)
-	{
-		src2 = src2 + len - 1;
-		dst2 = dst2 + len - 1;
-		while (len--)
-			*dst2-- = *src2--;
-	}
-	else if (src >= dst)
-	{
-		while (len--)
-			*dst2++ = *src2++;
-	}
-	return (dst);
+	(*hash).src = str;
+	(*hash).dst = NULL;
+	(*hash).srclen = len;
+	(*hash).dstlen = 0;
+	(*hash).blocks = 0;
 }
