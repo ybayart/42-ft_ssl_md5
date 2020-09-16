@@ -6,7 +6,7 @@
 /*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 07:40:50 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/15 17:30:18 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/16 17:44:02 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,84 +25,100 @@ static int g_s[64] = {
 	6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21,
 };
 
-static void		prepare(char *str, size_t len, t_md5 *data)
+static void		prepare(int fd, t_md5 *data)
 {
-	prepare_hash(str, len, &((*data).hash));
+	(*data).hash.fd = fd;
 	(*data).h[0] = 0x67452301;
 	(*data).h[1] = 0xefcdab89;
 	(*data).h[2] = 0x98badcfe;
 	(*data).h[3] = 0x10325476;
-	(*data).i = 0;
-	while ((*data).i < 16)
-		(*data).w[(*data).i++] = (uint32_t)0;
-	(*data).i = 0;
+	(*data).hash.i = 0;
+	while ((*data).hash.i < 16)
+		(*data).w[(*data).hash.i++] = (uint32_t)0;
+	(*data).hash.i = 0;
 	(*data).f = 0;
 	(*data).g = 0;
-	while ((*data).i < 64)
+	(*data).hash.blocks = 0;
+	while ((*data).hash.i < 64)
 	{
-		g_k[(*data).i] = (uint32_t)floor(4294967296 * fabs(sin((*data).i + 1)));
-		(*data).i++;
+		g_k[(*data).hash.i] = (uint32_t)floor(4294967296 *
+								fabs(sin((*data).hash.i + 1)));
+		(*data).hash.i++;
 	}
-	(*data).i = 0;
+	(*data).hash.i = 0;
 }
 
-static void		work_calc(t_md5 *data)
+static void		work_one_block(t_md5 *data)
 {
-	(*data).i = 0;
-	while ((*data).i < 64)
+	int		j;
+
+	j = -1;
+	while (++j < 16)
+		ft_memcpy((*data).w + j, (*data).buf + (j * 4), 4);
+	j = -1;
+	while (++j < 4)
+		(*data).m[j] = (*data).h[j];
+	(*data).hash.i = 0;
+	while ((*data).hash.i < 64)
 	{
-		g_fct[(*data).i / 16](data);
-		(*data).f += (*data).m[0] + g_k[(*data).i] + (*data).w[(*data).g];
+		g_fct[(*data).hash.i / 16](data);
+		(*data).f += (*data).m[0] + g_k[(*data).hash.i] + (*data).w[(*data).g];
 		(*data).m[0] = (*data).m[3];
 		(*data).m[3] = (*data).m[2];
 		(*data).m[2] = (*data).m[1];
-		(*data).m[1] += ft_left_rotate((*data).f, g_s[(*data).i]);
-		(*data).i++;
+		(*data).m[1] += ft_left_rotate((*data).f, g_s[(*data).hash.i]);
+		(*data).hash.i++;
 	}
+	j = -1;
+	while (++j < 4)
+		(*data).h[j] += (*data).m[j];
 }
 
 static void		work(t_md5 *data)
 {
 	size_t	i;
-	int		j;
 
 	i = 0;
-	while (i < (*data).hash.blocks)
+	ft_bzero((*data).buf, 64);
+	while (((*data).hash.len = read((*data).hash.fd, (*data).buf, 64)) == 64)
 	{
-		j = -1;
-		while (++j < 16)
-			ft_memcpy((*data).w + j, (*data).hash.dst + (i * 64) + (j * 4), 4);
-		j = -1;
-		while (++j < 4)
-			(*data).m[j] = (*data).h[j];
-		work_calc(data);
-		j = -1;
-		while (++j < 4)
-			(*data).h[j] += (*data).m[j];
+		work_one_block(data);
+		ft_bzero((*data).buf, 64);
 		i++;
+	}
+	padding(&((*data).buf), (64 * i) + (*data).hash.len, 64, ft_memcpy);
+	work_one_block(data);
+	(*data).hash.blocks = i;
+	if ((*data).hash.len > 55)
+	{
+		ft_bzero((*data).buf, 64);
+		padding_size(&((*data).buf), (64 * i) + (*data).hash.len, 64,
+																ft_memcpy);
+		work_one_block(data);
+		(*data).hash.blocks++;
 	}
 }
 
-char			ft_md5(char *str, size_t len, t_digest *digest)
+char			ft_md5(int fd, t_digest *digest)
 {
-	t_md5			data;
+	t_md5	data;
 
-	prepare(str, len, &data);
-	if (padding_simple(&(data.hash), (512 / 8), ft_memcpy) == 0)
-		return (0);
+	prepare(fd, &data);
 	work(&data);
-	if (!((*digest).ptr = ft_memalloc(32)))
+	if (data.hash.blocks == 0)
 	{
-		free(data.hash.dst);
-		return (0);
+		(*digest).text = ft_strdup((char*)data.buf);
+		(*digest).len = data.hash.len;
 	}
-	data.i = 0;
-	while (data.i < 4)
+	if (!((*digest).ptr = ft_memalloc(32)))
+		return (0);
+	data.hash.i = 0;
+	while (data.hash.i < 4)
 	{
-		ft_memmove((*digest).ptr + (data.i * 4), &(data.h[data.i]), 4);
-		data.i++;
+		ft_memcpy((*digest).ptr + (data.hash.i * 4),
+								&(data.h[data.hash.i]), 4);
+		data.hash.i++;
 	}
 	(*digest).size = 32;
-	free(data.hash.dst);
 	return (1);
 }

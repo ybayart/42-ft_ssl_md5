@@ -25,13 +25,15 @@ SRCS_LIST = main \
 			sha512 \
 			sha512_384 \
 			padding \
-			prepare \
 			utils \
 			sha_makeword \
 			interactive \
 			display_help \
 			parse \
+			parse_type \
 			print_digest \
+			errors \
+			init \
 
 INCS =	ft_ssl \
 		proto \

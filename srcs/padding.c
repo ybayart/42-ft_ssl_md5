@@ -6,25 +6,38 @@
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 10:53:21 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/15 19:23:31 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/16 13:55:39 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-char		padding_simple(t_hash *data, size_t size, void *(*fct)(void *,
-														const void *, size_t))
+void		padding(void *buf, size_t src, size_t size, void *(*fct)())
 {
-	(*data).dstlen = (*data).srclen + 1;
-	(*data).blocks = (((*data).dstlen % size > (size * 0.875) ?
-		(*data).dstlen + size : (*data).dstlen) / size) + 1;
-	(*data).dstlen = (*data).blocks * size;
-	if (((*data).dst = ft_memalloc((*data).dstlen)) == NULL)
-		return (0);
-	*(char*)((*data).dst + (*data).srclen) = (1 << 7);
-	ft_memcpy((*data).dst, (*data).src, (*data).srclen);
-	(*data).srclen *= 8;
-	fct((*data).dst + ((*data).dstlen - (size / 8)), &((*data).srclen),
-																(size / 8));
-	return (1);
+	size_t	dst;
+
+	dst = src + 1;
+	dst = (((dst % size > (size * 0.875) ?
+		dst + size : dst) / size) + 1) * size;
+	*((unsigned char*)buf + (src % size)) = (1 << 7);
+	if (src % size < (size * 0.875) - 1)
+	{
+		if (size == 128)
+			padding_size_128(buf, src, size, fct);
+		else
+			padding_size(buf, src, size, fct);
+	}
+}
+
+void		padding_size(void *buf, size_t src, size_t size, void *(*fct)())
+{
+	src *= 8;
+	fct(buf + (int)(size * 0.875), &(src), (size / 8));
+}
+
+void		padding_size_128(void *buf, __uint128_t src, size_t size,
+															void *(*fct)())
+{
+	src *= 8;
+	fct(buf + (int)(size * 0.875), &(src), (size / 8));
 }

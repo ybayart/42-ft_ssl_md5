@@ -6,7 +6,7 @@
 /*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 07:32:54 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/15 19:13:54 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/16 11:44:31 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,9 @@
 # include <stdlib.h>
 # include <math.h>
 # include <stdint.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <errno.h>
 
 #endif

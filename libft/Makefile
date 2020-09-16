@@ -6,7 +6,7 @@
 #    By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 07:37:47 by hexa              #+#    #+#              #
-#    Updated: 2020/09/15 10:24:20 by hexa             ###   ########.fr        #
+#    Updated: 2020/09/16 16:05:25 by hexa             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ SRCS = ft_memset.c\
 	   ft_putnbr.c\
 	   ft_putnbr_base.c\
 	   ft_putnbr_fd.c\
+	   ft_puttab.c\
 	   ft_sort_string_tab.c\
 	   ft_strinsert.c\
 		ft_lstadd.c \

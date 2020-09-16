@@ -6,7 +6,7 @@
 /*   By: racohen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 22:11:29 by racohen           #+#    #+#             */
-/*   Updated: 2020/09/15 10:24:08 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/16 16:06:48 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr(char *s);
 void				ft_putnstr(char *s, size_t n);
 void				ft_putstr_fd(char *s, int fd);
+ssize_t				ft_puttab(int fd, size_t size, ...);
 char				**ft_split(const char *str, char c);
 char				**ft_strsplit(char const *s, char c);
 char				**ft_splits(char const *s, char *set);

@@ -6,7 +6,7 @@
 /*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 07:40:13 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/15 20:15:31 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/16 14:21:34 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ int		main(int argc, char **argv)
 	if (argc == 1)
 	{
 		ret = run_interactive(argv[0]);
-	}
-	else if (ft_strcmp(argv[1], "help") == 0)
-	{
-		display_help();
 	}
 	else
 	{

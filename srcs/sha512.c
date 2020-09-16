@@ -6,7 +6,7 @@
 /*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 07:40:50 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/15 20:23:29 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/16 17:30:10 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ static uint64_t g_k[80] = {
 	0x5fcb6fab3ad6faec, 0x6c44198c4a475817
 };
 
-static void		prepare(char *str, size_t len, t_sha512 *data)
+static void		prepare(int fd, t_sha512 *data)
 {
-	prepare_hash(str, len, &((*data).hash));
+	(*data).hash.fd = fd;
 	(*data).h[0] = 0x6a09e667f3bcc908;
 	(*data).h[1] = 0xbb67ae8584caa73b;
 	(*data).h[2] = 0x3c6ef372fe94f82b;
@@ -65,10 +65,10 @@ static void		prepare(char *str, size_t len, t_sha512 *data)
 	(*data).h[5] = 0x9b05688c2b3e6c1f;
 	(*data).h[6] = 0x1f83d9abfb41bd6b;
 	(*data).h[7] = 0x5be0cd19137e2179;
-	(*data).i = 0;
-	while ((*data).i < 80)
-		(*data).w[(*data).i++] = (uint64_t)0;
-	(*data).i = 0;
+	(*data).hash.i = 0;
+	while ((*data).hash.i < 80)
+		(*data).w[(*data).hash.i++] = (uint64_t)0;
+	(*data).hash.i = 0;
 }
 
 /*
@@ -80,90 +80,103 @@ static void		prepare(char *str, size_t len, t_sha512 *data)
 ** s[5]: temp2
 */
 
-static void		work_calc_move(uint64_t (*m)[8], uint64_t s[6])
-{
-	(*m)[7] = (*m)[6];
-	(*m)[6] = (*m)[5];
-	(*m)[5] = (*m)[4];
-	(*m)[4] = (*m)[3] + s[3];
-	(*m)[3] = (*m)[2];
-	(*m)[2] = (*m)[1];
-	(*m)[1] = (*m)[0];
-	(*m)[0] = s[3] + s[5];
-}
-
 static void		work_calc(t_sha512 *data)
 {
 	uint64_t	s[6];
 
-	(*data).i = 0;
-	while ((*data).i < 80)
+	s[0] = (ft_right_rotate_64((*data).m[0], 28))
+		^ (ft_right_rotate_64((*data).m[0], 34))
+		^ (ft_right_rotate_64((*data).m[0], 39));
+	s[1] = (ft_right_rotate_64((*data).m[4], 14))
+		^ (ft_right_rotate_64((*data).m[4], 18))
+		^ (ft_right_rotate_64((*data).m[4], 41));
+	s[2] = ((*data).m[4] & (*data).m[5])
+		^ ((~(*data).m[4] & (*data).m[6]));
+	s[3] = (*data).m[7] + s[1] + s[2] + g_k[(*data).hash.i] +
+										(*data).w[(*data).hash.i];
+	s[4] = ((*data).m[0] & (*data).m[1])
+		^ ((*data).m[0] & (*data).m[2])
+		^ ((*data).m[1] & (*data).m[2]);
+	s[5] = s[0] + s[4];
+	(*data).m[7] = (*data).m[6];
+	(*data).m[6] = (*data).m[5];
+	(*data).m[5] = (*data).m[4];
+	(*data).m[4] = (*data).m[3] + s[3];
+	(*data).m[3] = (*data).m[2];
+	(*data).m[2] = (*data).m[1];
+	(*data).m[1] = (*data).m[0];
+	(*data).m[0] = s[3] + s[5];
+}
+
+static void		work_one_block(t_sha512 *data)
+{
+	int		j;
+
+	j = -1;
+	while (++j < 16)
+		ft_memrcpy((*data).w + j, (*data).buf + (j * 8), 8);
+	j--;
+	while (++j < 80)
+		(*data).w[j] = sha512_makeword((*data).w, j);
+	j = -1;
+	while (++j < 8)
+		(*data).m[j] = (*data).h[j];
+	(*data).hash.i = 0;
+	while ((*data).hash.i < 80)
 	{
-		s[0] = (ft_right_rotate_64((*data).m[0], 28))
-			^ (ft_right_rotate_64((*data).m[0], 34))
-			^ (ft_right_rotate_64((*data).m[0], 39));
-		s[1] = (ft_right_rotate_64((*data).m[4], 14))
-			^ (ft_right_rotate_64((*data).m[4], 18))
-			^ (ft_right_rotate_64((*data).m[4], 41));
-		s[2] = ((*data).m[4] & (*data).m[5])
-			^ ((~(*data).m[4] & (*data).m[6]));
-		s[3] = (*data).m[7] + s[1] + s[2] + g_k[(*data).i] +
-											(*data).w[(*data).i];
-		s[4] = ((*data).m[0] & (*data).m[1])
-			^ ((*data).m[0] & (*data).m[2])
-			^ ((*data).m[1] & (*data).m[2]);
-		s[5] = s[0] + s[4];
-		work_calc_move(&((*data).m), s);
-		(*data).i++;
+		work_calc(data);
+		(*data).hash.i++;
 	}
+	j = -1;
+	while (++j < 8)
+		(*data).h[j] += (*data).m[j];
 }
 
 static void		work(t_sha512 *data)
 {
 	size_t	i;
-	int		j;
 
 	i = 0;
-	while (i < (*data).hash.blocks)
+	ft_bzero((*data).buf, 128);
+	while (((*data).hash.len = read((*data).hash.fd, (*data).buf, 128)) == 128)
 	{
-		j = -1;
-		while (++j < 16)
-			ft_memrcpy((*data).w + j,
-				(*data).hash.dst + (i * 128) + (j * 8), 8);
-		j--;
-		while (++j < 80)
-			(*data).w[j] = sha512_makeword((*data).w, j);
-		j = -1;
-		while (++j < 8)
-			(*data).m[j] = (*data).h[j];
-		work_calc(data);
-		j = -1;
-		while (++j < 8)
-			(*data).h[j] += (*data).m[j];
+		work_one_block(data);
+		ft_bzero((*data).buf, 128);
 		i++;
+	}
+	padding(&((*data).buf), (128 * i) + (*data).hash.len, 128, ft_memrcpy);
+	work_one_block(data);
+	(*data).hash.blocks = i;
+	if ((*data).hash.len > 111)
+	{
+		ft_bzero((*data).buf, 128);
+		padding_size_128(&((*data).buf), (128 * i) + (*data).hash.len, 128,
+																	ft_memrcpy);
+		work_one_block(data);
+		(*data).hash.blocks++;
 	}
 }
 
-char			ft_sha512(char *str, size_t len, t_digest *digest)
+char			ft_sha512(int fd, t_digest *digest)
 {
 	t_sha512		data;
 
-	prepare(str, len, &data);
-	if (padding_simple(&(data.hash), (1024 / 8), ft_memrcpy) == 0)
-		return (0);
+	prepare(fd, &data);
 	work(&data);
-	if (!((*digest).ptr = ft_memalloc(128)))
+	if (data.hash.blocks == 0)
 	{
-		free(data.hash.dst);
-		return (0);
+		(*digest).text = ft_strdup((char*)data.buf);
+		(*digest).len = data.hash.len;
 	}
-	data.i = 0;
-	while (data.i < 8)
+	if (!((*digest).ptr = ft_memalloc(128)))
+		return (0);
+	data.hash.i = 0;
+	while (data.hash.i < 8)
 	{
-		ft_memrcpy((*digest).ptr + (data.i * 8), &(data.h[data.i]), 8);
-		data.i++;
+		ft_memrcpy((*digest).ptr + (data.hash.i * 8),
+								&(data.h[data.hash.i]), 8);
+		data.hash.i++;
 	}
 	(*digest).size = 128;
-	free(data.hash.dst);
 	return (1);
 }
