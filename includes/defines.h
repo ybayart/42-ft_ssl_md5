@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ssl.h                                           :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
+/*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/14 07:32:47 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/17 00:29:35 by hexa             ###   ########.fr       */
+/*   Created: 2020/09/17 00:28:08 by hexa              #+#    #+#             */
+/*   Updated: 2020/09/17 00:28:37 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SSL_H
-# define FT_SSL_H
+#ifndef DEFINES_H
+# define DEFINES_H
 
-# include "defines.h"
-# include "libinc.h"
-# include "typedef.h"
-# include "proto.h"
-# include "libft.h"
+# define NB_ALGO 6
 
 #endif

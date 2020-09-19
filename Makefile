@@ -24,6 +24,7 @@ SRCS_LIST = main \
 			sha256_224 \
 			sha512 \
 			sha512_384 \
+			whirlpool \
 			padding \
 			utils \
 			sha_makeword \

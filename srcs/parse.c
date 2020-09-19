@@ -6,18 +6,18 @@
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:12:53 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/16 18:04:28 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/19 02:54:07 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-static char	(*g_fct[5])() = {
-	ft_md5, ft_sha256, ft_sha256_224, ft_sha512, ft_sha512_384
+static char	(*g_fct[NB_ALGO])() = {
+	ft_md5, ft_sha256, ft_sha256_224, ft_sha512, ft_sha512_384, ft_whirlpool
 };
 
-static char	*g_index[5] = {
-	"md5", "sha256", "sha224", "sha512", "sha384"
+static char *g_index[NB_ALGO] = {
+	"md5", "sha256", "sha224", "sha512", "sha384", "whirlpool"
 };
 
 static char	parse_opt(char **args, size_t *i, t_parsing *data)
@@ -59,7 +59,7 @@ static char	parse_init(char **args, size_t i, t_parsing *parsing)
 	while (g_index[(*parsing).j] != NULL && ft_strcmp(g_index[(*parsing).j],
 																args[i]) != 0)
 		(*parsing).j++;
-	if ((*parsing).j == 5)
+	if ((*parsing).j == NB_ALGO)
 	{
 		display_help_short(args[i]);
 		return (1);
