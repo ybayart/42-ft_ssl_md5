@@ -6,11 +6,25 @@
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 19:24:47 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/16 18:16:18 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/21 20:57:53 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
+
+static void	clean(t_digest *digest)
+{
+	if ((*digest).text != NULL)
+	{
+		free((*digest).text);
+		(*digest).text = NULL;
+	}
+	if ((*digest).ptr != NULL)
+	{
+		free((*digest).ptr);
+		(*digest).ptr = NULL;
+	}
+}
 
 static void	infos(t_digest digest, t_parsing parsing, char state)
 {
@@ -44,7 +58,6 @@ static void	print_digest(t_digest digest, t_parsing parsing)
 	{
 		write(1, digest.text, digest.len);
 		write(1, "\n", 1);
-		free(digest.text);
 	}
 	infos(digest, parsing, 0);
 	while (i < (digest.size / 2))
@@ -63,4 +76,5 @@ void		calc_digest(t_parsing parsing, t_digest *digest, int fd)
 {
 	if (parsing.fct(fd, digest) != 0)
 		print_digest((*digest), parsing);
+	clean(digest);
 }

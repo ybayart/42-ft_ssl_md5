@@ -6,7 +6,7 @@
 #    By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 07:37:47 by hexa              #+#    #+#              #
-#    Updated: 2020/09/16 16:05:25 by hexa             ###   ########.fr        #
+#    Updated: 2020/09/21 19:22:57 by hexa             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = ft_memset.c\
 	   ft_memalloc.c\
 	   ft_memchr.c\
 	   ft_memcmp.c\
+	   ft_memxor.c\
 	   ft_strlen.c\
 	   ft_isalpha.c\
 	   ft_isdigit.c\

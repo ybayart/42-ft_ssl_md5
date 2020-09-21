@@ -25,6 +25,7 @@ SRCS_LIST = main \
 			sha512 \
 			sha512_384 \
 			whirlpool \
+			whirlpool_fct \
 			padding \
 			utils \
 			sha_makeword \

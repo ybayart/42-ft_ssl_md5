@@ -6,7 +6,7 @@
 /*   By: racohen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 22:11:29 by racohen           #+#    #+#             */
-/*   Updated: 2020/09/16 16:06:48 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/21 19:22:26 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <string.h>
+# include <stdint.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 
@@ -58,6 +59,7 @@ void				*ft_memcpy(void *dest, const void *src, size_t n);
 void				*ft_memrcpy(void *dest, const void *src, size_t n);
 void				*ft_memmove(void *dest, const void *src, size_t n);
 void				*ft_memset(void *s, int c, size_t n);
+void				*ft_memxor(void *dst, void *src, size_t n);
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putendl(char *s);

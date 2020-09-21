@@ -6,7 +6,7 @@
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 10:35:58 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/19 03:00:39 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/21 21:36:30 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,8 @@ typedef struct		s_whirlpool
 {
 	uint64_t		h[8];
 	uint64_t		w[8];
+	uint64_t		k[8];
 	unsigned char	buf[64];
-	size_t			size;
-	uint64_t		totalSize;
 	t_hash			hash;
 }					t_whirlpool;
 
