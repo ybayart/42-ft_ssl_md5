@@ -6,7 +6,7 @@
 /*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 07:32:47 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/21 19:31:39 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/22 01:30:12 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,5 @@
 # include "typedef.h"
 # include "proto.h"
 # include "libft.h"
-
-# define ROUND_WHIRL 10
 
 #endif

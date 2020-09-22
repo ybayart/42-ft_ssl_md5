@@ -6,7 +6,7 @@
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 19:17:04 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/21 19:22:47 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/22 01:35:01 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	*ft_memxor(void *dst, void *src, size_t count)
 
 	dst128 = (__uint128_t*)dst;
 	src128 = (__uint128_t*)src;
-	i = count / sizeof(__uint128_t);
+	i = count / 16;
 	while (i--)
 		*dst128++ ^= *src128++;
 	dst8 = (unsigned char *)dst128;
 	src8 = (unsigned char *)src128;
-	i = count % sizeof(__uint128_t);
+	i = count % 16;
 	while (i--)
 		*dst8++ ^= *src8++;
 	return (dst);

@@ -23,6 +23,8 @@ SRCS_LIST = main \
 			sha256 \
 			sha256_224 \
 			sha512 \
+			sha512_224 \
+			sha512_256 \
 			sha512_384 \
 			whirlpool \
 			whirlpool_fct \

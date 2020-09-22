@@ -6,7 +6,7 @@
 /*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 07:40:50 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/21 21:33:16 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/22 02:29:43 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void		prepare(int fd, t_whirlpool *data)
 
 static void		work_calc(t_whirlpool *data)
 {
-	(void)g_rc;
 	ft_whirlpool_sub_bytes((*data).k);
 	ft_whirlpool_shift_cols((*data).k);
 	ft_whirlpool_mix_rows((*data).k);
@@ -42,7 +41,7 @@ static void		work_one_block(t_whirlpool *data)
 	ft_memcpy((*data).k, (*data).h, 64);
 	ft_memxor((*data).w, (*data).k, 64);
 	(*data).hash.i = 0;
-	while ((*data).hash.i < ROUND_WHIRL)
+	while ((*data).hash.i < 10)
 	{
 		work_calc(data);
 		(*data).hash.i++;
@@ -88,13 +87,7 @@ char			ft_whirlpool(int fd, t_digest *digest)
 	}
 	if (!((*digest).ptr = ft_memalloc(128)))
 		return (0);
-	data.hash.i = 0;
-	while (data.hash.i < 8)
-	{
-		ft_memcpy((*digest).ptr + (data.hash.i * 8),
-								&(data.h[data.hash.i]), 8);
-		data.hash.i++;
-	}
+	ft_memcpy((*digest).ptr, data.h, 64);
 	(*digest).size = 128;
 	return (1);
 }
