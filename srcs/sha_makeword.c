@@ -6,11 +6,20 @@
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 17:49:54 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/15 17:50:03 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/22 11:46:35 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
+
+uint32_t	sha1_makeword(uint32_t w[80], int j)
+{
+	uint32_t	res;
+
+	res = (w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16]);
+	res = ft_left_rotate(res, 1);
+	return (res);
+}
 
 uint32_t	sha256_makeword(uint32_t w[64], int j)
 {

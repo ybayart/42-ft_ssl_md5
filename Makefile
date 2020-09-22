@@ -17,31 +17,36 @@ SRCS_DIR = srcs/
 
 INCS_DIR = includes/
 
-SRCS_LIST = main \
-			md5 \
-			md5_fct \
-			sha256 \
-			sha256_224 \
-			sha512 \
-			sha512_224 \
-			sha512_256 \
-			sha512_384 \
-			whirlpool \
-			whirlpool_fct \
-			padding \
-			utils \
-			sha_makeword \
-			interactive \
-			display_help \
-			parse \
-			parse_type \
-			print_digest \
-			errors \
-			init \
+SRCS_LIST = main			\
+			md5				\
+			md5_fct			\
+			sha1			\
+			sha1_fct		\
+			sha256			\
+			sha256_224		\
+			sha512			\
+			sha512_224		\
+			sha512_256		\
+			sha512_384		\
+			whirlpool		\
+			whirlpool_fct	\
+			padding			\
+			rotate			\
+			shift			\
+			sha_makeword	\
+			interactive		\
+			display_help	\
+			parse			\
+			parse_type		\
+			print_digest	\
+			errors			\
+			init			\
 
-INCS =	ft_ssl \
-		proto \
-		libinc \
+INCS =	ft_ssl		\
+		proto		\
+		libinc		\
+		defines		\
+		typedef		\
 
 SRCS =  $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_LIST)))
 

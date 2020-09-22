@@ -6,7 +6,7 @@
 /*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 07:33:00 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/22 02:10:36 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/22 11:48:22 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ void			ft_md5_fct_0(t_md5 *data);
 void			ft_md5_fct_1(t_md5 *data);
 void			ft_md5_fct_2(t_md5 *data);
 void			ft_md5_fct_3(t_md5 *data);
+
+char			ft_sha1(int fd, t_digest *digest);
+uint32_t		sha1_makeword(uint32_t w[80], int j);
+void			ft_sha1_fct_0(t_sha1 *data);
+void			ft_sha1_fct_1(t_sha1 *data);
+void			ft_sha1_fct_2(t_sha1 *data);
+void			ft_sha1_fct_3(t_sha1 *data);
 
 char			ft_sha256(int fd, t_digest *digest);
 char			ft_sha256_224(int fd, t_digest *digest);

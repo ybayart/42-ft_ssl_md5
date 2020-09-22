@@ -6,7 +6,7 @@
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:12:53 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/22 02:10:06 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/22 12:22:38 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static char	(*g_fct[NB_ALGO])() = {
 	ft_md5,
+	ft_sha1,
 	ft_sha256, ft_sha256_224,
 	ft_sha512, ft_sha512_224, ft_sha512_256, ft_sha512_384,
 	ft_whirlpool
@@ -21,8 +22,9 @@ static char	(*g_fct[NB_ALGO])() = {
 
 static char *g_index[NB_ALGO] = {
 	"md5",
+	"sha1",
 	"sha256", "sha224",
-	"sha512", "sha512-224", "sha512-256", "sha384"
+	"sha512", "sha512-224", "sha512-256", "sha384",
 	"whirlpool"
 };
 

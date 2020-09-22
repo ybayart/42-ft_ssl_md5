@@ -6,7 +6,7 @@
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 10:35:58 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/21 21:36:30 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/22 11:56:44 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,17 @@ typedef struct		s_md5
 	unsigned char	buf[64];
 	t_hash			hash;
 }					t_md5;
+
+typedef struct		s_sha1
+{
+	uint32_t		h[5];
+	uint32_t		m[5];
+	uint32_t		w[80];
+	uint32_t		f;
+	uint32_t		k;
+	unsigned char	buf[64];
+	t_hash			hash;
+}					t_sha1;
 
 typedef struct		s_sha256
 {

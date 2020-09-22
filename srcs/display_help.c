@@ -6,7 +6,7 @@
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 19:52:28 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/22 02:25:11 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/22 12:54:07 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static void	display_help_digest(void)
 {
 	write(1, "Message Digest commands\n", 24);
 	write(1, "md5		sha256		sha512		sha512-256\n", 32);
-	write(1, "whirlpool	sha224		sha384		sha512-224\n", 37);
+	write(1, "sha1		sha224		sha384		sha512-224\n", 33);
+	write(1, "whirlpool\n", 10);
 	write(1, "\n", 1);
 }
 
