@@ -6,7 +6,7 @@
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 10:35:58 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/22 11:56:44 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/26 02:07:06 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,18 @@ typedef struct		s_sha512
 	unsigned char	buf[128];
 	t_hash			hash;
 }					t_sha512;
+
+typedef struct		s_sha3
+{
+	uint64_t		saved;
+	uint64_t		s[25];
+	uint8_t			sb[200];
+	unsigned		index_byte;
+	unsigned		index_word;
+	unsigned		capa_word;
+	unsigned char	buf[1024];
+	t_hash			hash;
+}					t_sha3;
 
 typedef struct		s_whirlpool
 {

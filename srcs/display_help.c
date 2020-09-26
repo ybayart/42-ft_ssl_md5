@@ -6,7 +6,7 @@
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 19:52:28 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/22 12:54:07 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/26 02:17:47 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,26 @@
 
 static void	display_help_digest(void)
 {
-	write(1, "Message Digest commands\n", 24);
-	write(1, "md5		sha256		sha512		sha512-256\n", 32);
-	write(1, "sha1		sha224		sha384		sha512-224\n", 33);
-	write(1, "whirlpool\n", 10);
-	write(1, "\n", 1);
+	ft_puttab(1, 9,
+		"Message Digest commands\n",
+		" md5\n",
+		" sha1\n",
+		" sha224		sha256\n",
+		" sha384		sha512\n",
+		" sha512-224	sha512-256\n",
+		" sha3-256	sha3-384	sha3-512\n",
+		" whirlpool\n",
+		"\n");
 }
 
 static void	display_help_usage(void)
 {
-	write(1, "Common options\n", 15);
-	write(1, "-p	echo STDIN to STDOUT and append the checksum to STDOUT\n",
-																		58);
-	write(1, "-q	quiet mode\n", 14);
-	write(1, "-r	reverse the format of the output\n", 36);
-	write(1, "-s	print the sum of the given string\n", 37);
+	ft_puttab(1, 5,
+		"Common options\n",
+		" -p	echo STDIN to STDOUT and append the checksum to STDOUT\n",
+		" -q	quiet mode\n",
+		" -r	reverse the format of the output\n",
+		" -s	print the sum of the given string\n");
 }
 
 void		display_help(void)

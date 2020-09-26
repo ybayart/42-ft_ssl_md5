@@ -6,7 +6,7 @@
 /*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 07:40:13 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/16 14:21:34 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/26 02:06:07 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		main(int argc, char **argv)
 {
-	char			ret;
+	char	ret;
 
 	ret = EXIT_SUCCESS;
 	if (argc == 1)

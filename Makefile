@@ -28,6 +28,9 @@ SRCS_LIST = main			\
 			sha512_224		\
 			sha512_256		\
 			sha512_384		\
+			sha3			\
+			sha3_launch		\
+			sha3_keccak		\
 			whirlpool		\
 			whirlpool_fct	\
 			padding			\

@@ -6,13 +6,13 @@
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 00:28:08 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/22 12:13:45 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/26 01:34:47 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define NB_ALGO 9
+# define NB_ALGO 12
 
 #endif
