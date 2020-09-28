@@ -6,7 +6,7 @@
 /*   By: ybayart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 21:39:35 by ybayart           #+#    #+#             */
-/*   Updated: 2020/09/28 20:25:45 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/28 20:34:18 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			get_next_buf(int fd, char *line, size_t len)
 	ret2 = 0;
 	while ((diff = len - ret2) != 0)
 	{
-		if ((ret = read(fd, buf + ret2, (diff < 64 ? diff : 64))) < 0)
+		if ((ret = read(fd, buf + ret2, diff)) < 0)
 		{
 			free(buf);
 			return (-1);
