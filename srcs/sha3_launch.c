@@ -6,11 +6,16 @@
 /*   By: hexa <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 01:37:43 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/26 01:37:51 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/28 16:07:15 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
+
+char		ft_sha3_128(int fd, t_digest *digest)
+{
+	return (ft_sha3(fd, digest, 128));
+}
 
 char		ft_sha3_256(int fd, t_digest *digest)
 {

@@ -1,5 +1,8 @@
 #! /bin/bash
 
+make ffclean>/dev/null
+make -j>/dev/null
+
 for algo in md5 sha1 sha224 sha256 sha384 sha512 sha512-224 sha512-256 sha3-256 sha3-384 sha3-512 whirlpool
 do
 	echo -n $algo...

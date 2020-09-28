@@ -6,7 +6,7 @@
 /*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 07:33:00 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/26 01:39:02 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/28 16:03:55 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char			ft_sha512_256(int fd, t_digest *digest);
 char			ft_sha512_384(int fd, t_digest *digest);
 uint64_t		sha512_makeword(uint64_t w[64], int j);
 
+char			ft_sha3_128(int fd, t_digest *digest);
 char			ft_sha3_256(int fd, t_digest *digest);
 char			ft_sha3_384(int fd, t_digest *digest);
 char			ft_sha3_512(int fd, t_digest *digest);
