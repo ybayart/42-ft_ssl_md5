@@ -6,20 +6,20 @@
 /*   By: ybayart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 21:39:35 by ybayart           #+#    #+#             */
-/*   Updated: 2019/11/18 19:12:11 by ybayart          ###   ########.fr       */
+/*   Updated: 2020/09/28 18:24:40 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void		init_free_gnl(t_gnl *gnl, char **line)
+static void	init_free_gnl(t_gnl *gnl, char **line)
 {
 	gnl->l_line = 0;
 	*line = malloc(sizeof(char));
 	*line[0] = 0;
 }
 
-int			gnl_is_readed(const char *s, int len)
+static int	gnl_is_readed(const char *s, int len)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ int			gnl_is_readed(const char *s, int len)
 	return (-1);
 }
 
-int			gnl_lecture(int fd, t_gnl *gnl, char **line)
+static int	gnl_read(int fd, t_gnl *gnl, char **line)
 {
 	gnl->len = read(fd, gnl->str, BUFFER_SIZE);
 	if (gnl->len > 0)
@@ -81,7 +81,7 @@ int			get_next_line(int fd, char **line)
 	if (fd < 0 || !line || BUFFER_SIZE <= 0 || read(fd, gnl.str, 0) == -1)
 		return (-1);
 	init_free_gnl(&gnl, line);
-	if (gnl.i == 0 && (gnl.tmp = gnl_lecture(fd, &gnl, line)) <= 0)
+	if (gnl.i == 0 && (gnl.tmp = gnl_read(fd, &gnl, line)) <= 0)
 		return (gnl.tmp);
 	while (1)
 	{
@@ -96,7 +96,7 @@ int			get_next_line(int fd, char **line)
 		gnl.i = ((gnl.tmp < 0) ? 0 : gnl.i + gnl.tmp + 1);
 		if (gnl.tmp >= 0)
 			break ;
-		if ((gnl.tmp = gnl_lecture(fd, &gnl, line)) <= 0)
+		if ((gnl.tmp = gnl_read(fd, &gnl, line)) <= 0)
 			return (gnl.tmp);
 	}
 	return (1);

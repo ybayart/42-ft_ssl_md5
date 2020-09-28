@@ -6,7 +6,7 @@
 /*   By: racohen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 23:59:52 by racohen           #+#    #+#             */
-/*   Updated: 2020/02/16 17:57:32 by ybayart          ###   ########.fr       */
+/*   Updated: 2020/09/28 17:43:14 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <stddef.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 16
+#  define BUFFER_SIZE 4
 # endif
 
 typedef struct	s_gnl

@@ -6,7 +6,7 @@
 /*   By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 07:40:50 by hexa              #+#    #+#             */
-/*   Updated: 2020/09/26 03:11:07 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/28 20:30:25 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ static void		work(t_md5 *data)
 
 	i = 0;
 	ft_bzero((*data).buf, 64);
-	while (((*data).hash.len = read((*data).hash.fd, (*data).buf, 64)) == 64)
+	while (((*data).hash.len = get_next_buf((*data).hash.fd,
+								(char*)(*data).buf, 64)) == 64)
 	{
 		work_one_block(data);
 		ft_bzero((*data).buf, 64);

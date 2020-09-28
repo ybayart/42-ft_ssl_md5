@@ -6,7 +6,7 @@
 #    By: hexa <hexanyn@gmail.com>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 07:37:47 by hexa              #+#    #+#              #
-#    Updated: 2020/09/21 19:22:57 by hexa             ###   ########.fr        #
+#    Updated: 2020/09/28 18:56:33 by hexa             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,6 +107,7 @@ SRCS = ft_memset.c\
 		ft_free_tab.c\
 		ft_flags.c\
 		get_next_line.c\
+		get_next_buf.c\
 		ft_lstnew.c\
 		ft_lstadd.c\
 		ft_is_in.c\

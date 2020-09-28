@@ -6,7 +6,7 @@
 /*   By: racohen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 22:11:29 by racohen           #+#    #+#             */
-/*   Updated: 2020/09/21 19:22:26 by hexa             ###   ########.fr       */
+/*   Updated: 2020/09/28 19:37:35 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,7 @@ void				ft_sort_string_tab(char **ft_tab);
 char				**ft_strinsert(char **list, char *str, size_t pos);
 void				*ft_print_memory(void *addr, unsigned int size);
 void				*ft_print_binary(void *addr, unsigned int size);
+
+int					get_next_buf(int fd, char *line, size_t len);
 
 #endif
