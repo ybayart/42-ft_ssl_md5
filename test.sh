@@ -25,3 +25,5 @@ do
 	fi
 	echo 
 done
+
+make ffclean>/dev/null
